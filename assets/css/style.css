@@ -19,18 +19,45 @@ body {
 
 }
 
-.characters {
+#characters {
     margin-top:10px;
+    margin-bottom:100px;
 }
 
 .fader {
     opacity: .04
 }
 
-.col-centered{
-    float: none;
-    margin: 0 auto;
+#battleStage {
+text-align:center
 }
 
-    
+/* #hero {
+    height:150px;
+    width:200px;
+} */
+
+#hero img {
+    width:200px;
+}
+
+#enemy img {
+    width:200px;
+    /* color:white; */
+}
+
+.col-md-4 {
+    color:white;
+}
+
+#blankRow {
+    margin-top:100px;
+}
+
+#button {
+    margin-top:50px;
+}
+
+
+
 

@@ -8,15 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RPG Game</title>
 
-    
+
     <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
 
     <link rel="stylesheet" href="./assets/css/style.css">
 
-    
+
 
 
 </head>
@@ -32,20 +32,38 @@
         </div>
 
 
-        <div class="row" id="characters"></div>
 
+    </div class="container">
 
-        <div class="row col-centered mx-auto" id="battleStage">
+    <div class="row" id="characters"></div>
 
-            <div class="col-md-3"></div>
+    <div class="row" id="battleStage">
 
-            <div class="col-md-3" id="hero">test</div>
+        <div class="col-md-4" id="hero">
 
-            <div class="col-md-3" id="enemy">test</div>
-
-            <div class="col-md-3"></div>
+            <div class="battleImg" id="heroImg"></div>
+            <div class="strength" id="heroStrength"></div>
+        <!-- <div class="attackPower" id="heroAttackPower"></div> -->
 
         </div>
+
+        <div class="col-md-4" id="attackButton">
+            <button type="button" class="btn btn-danger" id="button">Attack!</button>
+        </div>
+
+        <div class="col-md-4" id="enemy">
+            <div class="battleImg" id="enemyImg"></div>
+            <div class="strength" id="enemyStrength"></div>
+        <!-- <div class="attackPower" id="enemyAttackPower"></div> -->
+    </div>
+
+    </div>
+
+    <div class="row" id="blankRow"></div>
+    <div class="col-md-12"></div>
+
+
+    </div>
 
 
     </div>
@@ -59,6 +77,10 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script language="JavaScript" type="text/javascript" src="./assets/JavaScript/game.js"></script>
+
+    <footer>
+
+    </footer>
 
 
 </body>
