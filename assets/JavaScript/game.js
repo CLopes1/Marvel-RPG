@@ -15,7 +15,7 @@ $(document).ready(function () {
         //Generate characters    
         for (var i = 0; i < charArr.length; i++) {
             var num = Math.floor(12 / charArr.length)
-            var charThing = $("<div class='myChar col-md-" + num + "'value='" + i + "'><img src='" + charArr[i].image + "' style='width:150px;height:150px;border:3px solid '/></div>")
+            var charThing = $("<div class='myChar col-md-" + num + "'value='" + i + "'><img src='" + charArr[i].image + "' style='width:150px;height:150px;border:3px solid gray'/></div>")
             // $("#characters").css("border", "3px solid red")
             $("#characters").append(charThing)
         }

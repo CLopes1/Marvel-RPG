@@ -18,30 +18,14 @@ body {
 }
 
 .characters {
-    margin-top:100px;
+    margin-top:50px;
 }
 
 .fader {
     opacity: .04
 }
 
-
-
-
-/* .jumbotron {
-    margin:0 auto 75px auto;
-    background-image: url("../images/jumbo.jpg");
-    background-repeat: no-repeat;
-    background-position: top;
-    background-size: auto 100%;
-     
-} */
-
-
-
 #hero, #enemy{
     margin-top:100px;
-    color:red;
-
 }
 
