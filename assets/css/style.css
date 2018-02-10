@@ -11,21 +11,26 @@ body {
 }
 
 .jumbotron {
-   
     background: rgba(0, 0, 0, 0.01);
-    color:white;
+    color:red;
+    font-family: 'Bungee';
+    height:150px;
+    padding:20px;
 
 }
 
 .characters {
-    margin-top:50px;
+    margin-top:10px;
 }
 
 .fader {
     opacity: .04
 }
 
-#hero, #enemy{
-    margin-top:100px;
+.col-centered{
+    float: none;
+    margin: 0 auto;
 }
+
+    
 
