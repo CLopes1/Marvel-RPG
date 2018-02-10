@@ -22,6 +22,7 @@ body {
 #characters {
     margin-top:10px;
     margin-bottom:100px;
+    text-align: center;
 }
 
 .fader {
@@ -29,7 +30,7 @@ body {
 }
 
 #battleStage {
-text-align:center
+text-align:center;
 }
 
 /* #hero {
@@ -54,10 +55,7 @@ text-align:center
     margin-top:100px;
 }
 
-#button {
-    margin-top:50px;
-    margin-left: -40px;
-}
+
 
 
 
