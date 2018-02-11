@@ -1,3 +1,10 @@
+//-----------------------------------------------Resources / Notes-----------------------------------------------------
+
+// Character Images - https://comicvine.gamespot.com/profile/theoptimist/lists/top-100-marvel-characters/32199/
+
+
+//-------------------------------------------------------------------------------------------------------------
+
 $(document).ready(function () {
 
     var chosenHero
@@ -22,6 +29,21 @@ $(document).ready(function () {
         }
     }
 
+    // function resetGame() {
+    //     $("#characters").empty()
+    //     $("#enemyImg").empty()
+    //     $("#enemyName").empty()
+    //     $("#enemyHealth").empty()
+    //     $("#heroImg").empty()
+    //     $("#heroName").empty()
+    //     $("#heroHealth").empty()
+    //     chosenEnemy.hp = 100
+    //     $(".enemyStrength").html("Strength: " + 100)
+    //     chosenHero.hp = 100
+    //     // $("#heroStrength").html("Strength: " + 100)
+    //     initGame()
+    // }
+
     //selects and grays out the first choice, assigns it as the hero. 
     $(document).on("click", ".myChar", function () {
 
@@ -31,10 +53,9 @@ $(document).ready(function () {
             $(this).addClass("fader")
             $("#heroImg").append("<img src='" + chosenHero.image + "'/>")
             $("#heroName").append(chosenHero.name)
-            $("#heroStrength").append("Strength: " + chosenHero.hp)
+            $("#heroHp").append("Health: " + chosenHero.hp)
+            $("#heroAttack").append("Attack Power: " + chosenHero.attackPower)
             isHeroChosen = true
-
-
         }
 
         //selects and grays out the second choice, assigns it as the enemy. 
@@ -44,7 +65,9 @@ $(document).ready(function () {
             $(this).addClass("fader")
             $("#enemyImg").append("<img src='" + chosenEnemy.image + "'/>")
             $("#enemyName").append(chosenEnemy.name)
-            $("#enemyStrength").append("Strength: " + chosenEnemy.hp)
+            $("#enemyHp").append("Health: " + chosenEnemy.hp)
+            // $("#enemyAttack").append("Attack Power: " + chosenEnemy.attackPower)
+            $("#enemyCtrAttack").append("Counter Attack: " + chosenEnemy.counterAttack)
             isEnemyChosen = true
             $(document).scrollTop(2000)
 
@@ -52,25 +75,50 @@ $(document).ready(function () {
 
     })
 
+
+
     $("#button").on("click", function () {
-        if (chosenHero.hp >0) {
-            $("#heroStrength").html("Strength: " + (chosenHero.hp -= chosenEnemy.attack()))
-            console.log("The button has been clicked, hero health is now: " + chosenHero.hp)
-            $("#enemyStrength").html("Strength: " + (chosenEnemy.hp -= chosenHero.attack()))
+        if (chosenEnemy.hp > 0) {
+        $("#heroHp").html("Health: " + (chosenHero.hp -= chosenEnemy.counterAttack))
+        console.log("The button was clicked, hero health is now: " + chosenHero.hp)
+        $("#heroAttack").html("Attack Power: " + (chosenHero.attackPower += 20))
+        console.log("The button was clicked, hero attack power is now: " + chosenHero.attackPower)
+        $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
         }
 
-     if (chosenHero.hp <= 0) {
-            alert("You've been defeated! Game Over!")
+        if (chosenHero.Hp <= 0 && chosenEnemy.hp <= 0) {
+            alert("It's a draw! Both players lost this battle.")
+            enemiesLeft = 5
             location.reload()
+        }
+
+        else if (chosenHero.hp <= 0) {
+            alert("You've been defeated! Game Over!")
+            // resetGame()
+            enemiesLeft = 5
+            location.reload()
+        }
+
+
+        else if (chosenEnemy.hp <= 0) {
+            $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
+            alert("You've defeated " + chosenEnemy.name + "! Select another character to continue fighting.")
+            isEnemyChosen = false
+            enemiesLeft--
+            $("#enemyImg").empty()
+            $("#enemyName").empty()
+            $("#enemyHp").empty()
+            $("#enemyAttack").empty()
+            $("#enemyCtrAttack").empty()
             $(document).scrollTop(0)
         }
 
-         if (chosenEnemy.hp <= 0) {
-            // chosenHero.hp  + 50
-            enemiesLeft--
-            isEnemyChosen = false
-            alert("You've defeated " + chosenEnemy.name + ". Select another character to battle.")
-            $("#enemy").empty()
+        else if (enemiesLeft = 0) {
+            alert("You won! Congratulations champion!")
+        }
+
+        else {
+
         }
 
     })
@@ -78,64 +126,72 @@ $(document).ready(function () {
     var charArr = [
 
         {
-            name: "Beast",
-            hp: 100,
-            attack: function () {
-                return Math.floor(Math.random() * 15) + 1
-            },
-            // counterAttack: "",
+            name: "Juggernaut",
+            hp: 120,
+            // attack: function () {
+            //     return Math.floor(Math.random() * 15) + 1
+            // },
+            attackPower: 18,
+            counterAttack: 10,
             image: "./assets/images/beast.jpeg",
         },
 
         {
             name: "Captain America",
-            hp: 100,
-            attack: function () {
-                return Math.floor(Math.random() * 15) + 1
-            },
-            // counterAttack: "",
+            hp: 130,
+            // attack: function () {
+            //     return Math.floor(Math.random() * 15) + 1
+            // },
+            attackPower: 30,
+            counterAttack: 15,
             image: "./assets/images/captainamerica.jpeg",
         },
 
         {
             name: "Emma Frost",
-            hp: 100,
-            attack: function () {
-                return Math.floor(Math.random() * 15) + 1
-            },
-            // counterAttack: "",
+            hp: 110,
+            // attack: function () {
+            //     return Math.floor(Math.random() * 15) + 1
+            // },
+            attackPower: 15,
+            counterAttack: 10,
             image: "./assets/images/emmafrost.jpeg",
         },
 
 
         {
             name: "Magneto",
-            hp: 100,
-            attack: function () {
-                return Math.floor(Math.random() * 15) + 1
-            },
-            // counterAttack: "",
+            hp: 120,
+            // attack: function () {
+            //     return Math.floor(Math.random() * 15) + 1
+            // },
+            attackPower: 40,
+            counterAttack: 20,
             image: "./assets/images/magneto.jpeg",
         },
 
 
         {
             name: "Night Crawler",
-            hp: 100,
-            attack: function () {
-                return Math.floor(Math.random() * 15) + 1
-            },
-            // counterAttack: "",
+            hp: 105,
+            // attack: function () {
+            //     return Math.floor(Math.random() * 15) + 1
+            // },
+
+            attackPower: 15,
+            counterAttack: 30,
             image: "./assets/images/nightcrawler.jpeg",
         },
 
         {
             name: "Spider Man",
-            hp: 100,
-            attack: function () {
-                return Math.floor(Math.random() * 15) + 1
-            },
-            // counterAttack: "",
+            hp: 150,
+            // attack: function () {
+            //     return Math.floor(Math.random() * 15) + 1
+            // },
+
+            attackPower: 15,
+            counterAttack: 30,
             image: "./assets/images/spiderman.jpg",
         }
 
