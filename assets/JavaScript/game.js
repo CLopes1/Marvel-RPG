@@ -53,13 +53,13 @@ $(document).ready(function () {
     })
 
     $("#button").on("click", function () {
-        if (chosenHero.hp > 0 || chosenEnemy.hp > 0) {
+        if (chosenHero.hp >0) {
             $("#heroStrength").html("Strength: " + (chosenHero.hp -= chosenEnemy.attack()))
             console.log("The button has been clicked, hero health is now: " + chosenHero.hp)
             $("#enemyStrength").html("Strength: " + (chosenEnemy.hp -= chosenHero.attack()))
         }
 
-        if (chosenHero.hp <= 0) {
+     if (chosenHero.hp <= 0) {
             alert("You've been defeated! Game Over!")
             location.reload()
             $(document).scrollTop(0)
