@@ -16,6 +16,13 @@ $(document).ready(function () {
     var enemiesLeft = 5
 
 
+    // Gets Link for Theme Song
+    var audioElement = document.createElement("audio");
+    audioElement.setAttribute("src", "./assets/javascript/magneto.mp3");
+
+
+
+
     //Initializes the game
     function initGame() {
 
@@ -74,6 +81,7 @@ $(document).ready(function () {
             $("#enemyCtrAttack").append("Counter Attack: " + chosenEnemy.counterAttack)
             isEnemyChosen = true
             $(document).scrollTop(2000)
+            audioElement.play()
 
         }
 
@@ -84,49 +92,75 @@ $(document).ready(function () {
     $("#button").on("click", function () {
         if (chosenEnemy.hp > 0) {
             $("#heroHp").html("Health: " + (chosenHero.hp -= chosenEnemy.counterAttack))
-            console.log("The button was clicked, hero health is now: " + chosenHero.hp)
-            $("#heroAttack").html("Attack Power: " + (chosenHero.attackPower += 20))
-            console.log("The button was clicked, hero attack power is now: " + chosenHero.attackPower)
+            // console.log("The button was clicked, hero health is now: " + chosenHero.hp)
             $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
+            // console.log("The button was clicked, hero attack power is now: " + chosenHero.attackPower)
         }
+        $("#heroAttack").html("Attack Power: " + (chosenHero.attackPower += 20))
 
-        if(chosenHero.Hp <= 0 && chosenEnemy.hp <= 0) {
+        if (chosenHero.Hp < 1 && chosenEnemy.hp < 1) {
             alert("It's a draw! Both players lost this battle.")
             enemiesLeft = 5
             location.reload()
         }
 
-        if (chosenEnemy.hp <= 0) {
-            $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
-            alert("You've defeated " + chosenEnemy.name + "! Select your next opponent!")
+
+        else if (enemiesLeft =0) {
+            alert("You won! Congratulations champion!")
             isEnemyChosen = false
             enemiesLeft--
+            $("#enemyImg").animate({ height: "500px" });
             $("#enemyImg").empty()
             $("#enemyName").empty()
             $("#enemyHp").empty()
             $("#enemyAttack").empty()
             $("#enemyCtrAttack").empty()
             $(document).scrollTop(0)
-           
         }
 
 
-        if (chosenHero.hp <= 0) {
+        else if (chosenEnemy.hp < 1) {
+            enemiesLeft--
+            $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
+            // $("#enemyImg").delay( 800 ).fadeOut( "slow" )
+            // $("#enemyName").delay( 800 ).fadeOut( "slow" )
+            // $("#enemyHp").delay( 800 ).fadeOut( "slow" )
+            // $("#enemyCtrAttack").delay( 800 ).fadeOut( "slow" )
+            $("#enemyImg").empty()
+            $("#enemyName").empty()
+            $("#enemyHp").empty()
+            $("#enemyAttack").empty()
+            $("#enemyCtrAttack").empty()
+            alert("You've defeated " + chosenEnemy.name + "! Select your next opponent!")
+            isEnemyChosen = false
+            $(document).scrollTop(0)
+
+        }
+
+
+        else if (chosenHero.hp < 1) {
+            $("#heroImg").fadeOut("slow")
             alert("You've been defeated! Game Over!")
             // resetGame()
             enemiesLeft = 5
             location.reload()
         }
 
-       if (enemiesLeft = 0) {
-            alert("You won! Congratulations champion!")
-        }
 
         else {
 
         }
 
     })
+
+    // Music Buttons
+    $(".theme-button").on("click", function () {
+        audioElement.play();
+    });
+
+    $(".pause-button").on("click", function () {
+        audioElement.pause();
+    });
 
     //Character array
     var charArr = [
@@ -205,5 +239,6 @@ $(document).ready(function () {
 
 
     initGame();
+
 
 })

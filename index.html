@@ -22,12 +22,54 @@
 
 <body>
 
+    <!-- Navigation Bar -->
+
+    <!-- <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <h4 class="text-white">Game Rules</h4>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>  -->
+
     <div class="container">
 
 
         <div class="jumbotron mx-auto d-block" style="width: 100%">
-            <h1 class="text-center display-3">MARVEL ARENA</h1>
-            <!-- <p class="text-center lead">Enter text</p> -->
+            <h1 class="text-center display-3">MARVEL Combat</h1>
+            
+        </div>
+
+        <div class="container combatRules">
+
+            <button class="btn btn-light text-center" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                aria-controls="collapseExample">
+                Combat Rules
+            </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <h4>The object of the game is to defeat all of your opponents before your health points drop to zero.</h3><br>
+
+                    <h5>How to play:</h5>
+                    <ul id=combatList>
+                        <li>First select the character that you want to be from the characters list, then select your opponent.</li>
+                        <li>Press the attack button to begin combat.</li>
+                        <li>If your health level drops to zero points you have lost the match and the game will rest.</li>
+                        <li>If you choose your opponents wisely and beath them all before losing all of your health points.</li>
+                    </ul>
+                    <br>
+                    <h5 id="h5">Good Luck!</h5>
+                       
+                </div>
+            </div>
         </div>
 
 
@@ -44,14 +86,18 @@
             <div class="name" id="heroName"></div>
             <div class="health" id="heroHp"></div>
             <div class="attack" id="heroAttack"></div>
-        
 
-        <!-- <div class="attackPower" id="heroAttackPower"></div> -->
+
+            
 
         </div>
 
         <div class="col-md-4" id="attackButton">
-            <button type="button" class="btn btn-danger" id="button">Attack!</button>
+            <button type="button" class="btn btn-lg btn-danger" id="button">Attack!</button>
+            <div class="text-center">
+                    <button class="btn btn-secondary btn-xs theme-button"><span class="glyphicon glyphicon-music"></span> Play Music</button>
+                    <button class="btn btn-default btn-xs pause-button"><span class="glyphicon glyphicon-pause"></span> Pause Music</button>
+                  </div>
         </div>
 
         <div class="col-md-4" id="enemy">
@@ -60,8 +106,8 @@
             <div class="health" id="enemyHp"></div>
             <div class="attack" id="enemyAttack"></div>
             <div class="ctrAttack" id="enemyCtrAttack"></div>
-        <!-- <div class="attackPower" id="enemyAttackPower"></div> -->
-    </div>
+            
+        </div>
 
     </div>
 
@@ -75,14 +121,14 @@
     </div>
 
 
-
-
-
-    <!-- <button type="button" class="btn btn-danger">Attack</button> -->
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script language="JavaScript" type="text/javascript" src="./assets/JavaScript/game.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
     <footer>
 
