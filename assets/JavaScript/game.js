@@ -15,16 +15,20 @@ $(document).ready(function () {
     var isEnemyChosen
     var enemiesLeft = 5
 
+
+    //Initializes the game
     function initGame() {
 
         isHeroChosen = false
         isEnemyChosen = false
 
-        //Generate characters    
+
+        //Generate list of characters    
         for (var i = 0; i < charArr.length; i++) {
             var num = Math.floor(12 / charArr.length)
-            var charThing = $("<div class='myChar col-md-" + num + "'value='" + i + "'><img src='" + charArr[i].image + "' style='width:150px;height:200px;border:3px solid gray'/></div>")
-            // $("#characters").css("border", "3px solid red")
+            // var charThing = $("<div class='myChar col-md-" + num + "'value='" + i + "'><img src='" + charArr[i].image + "' style='width:150px;height:200px;border:3px solid gray'/></div>")
+            var charThing = $("<div class='card-deck myChar col-md-" + num +
+                "' value='" + i + "'style='width:14rem;'><div class='card-img-top'><img src='" + charArr[i].image + "' style='width:200px;height:300px;'/></div><div class='card-body'><div class='card-text'>" + charArr[i].name + "<br>" + "Health: " + charArr[i].hp + "<br>" + "Attack: " + charArr[i].attackPower + "<br>" + "Counter Attack: " + charArr[i].counterAttack + "</div></div></div>")
             $("#characters").append(charThing)
         }
     }
@@ -76,33 +80,25 @@ $(document).ready(function () {
     })
 
 
-
+    //Game-play logic
     $("#button").on("click", function () {
         if (chosenEnemy.hp > 0) {
-        $("#heroHp").html("Health: " + (chosenHero.hp -= chosenEnemy.counterAttack))
-        console.log("The button was clicked, hero health is now: " + chosenHero.hp)
-        $("#heroAttack").html("Attack Power: " + (chosenHero.attackPower += 20))
-        console.log("The button was clicked, hero attack power is now: " + chosenHero.attackPower)
-        $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
+            $("#heroHp").html("Health: " + (chosenHero.hp -= chosenEnemy.counterAttack))
+            console.log("The button was clicked, hero health is now: " + chosenHero.hp)
+            $("#heroAttack").html("Attack Power: " + (chosenHero.attackPower += 20))
+            console.log("The button was clicked, hero attack power is now: " + chosenHero.attackPower)
+            $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
         }
 
-        if (chosenHero.Hp <= 0 && chosenEnemy.hp <= 0) {
+        if(chosenHero.Hp <= 0 && chosenEnemy.hp <= 0) {
             alert("It's a draw! Both players lost this battle.")
             enemiesLeft = 5
             location.reload()
         }
 
-        else if (chosenHero.hp <= 0) {
-            alert("You've been defeated! Game Over!")
-            // resetGame()
-            enemiesLeft = 5
-            location.reload()
-        }
-
-
-        else if (chosenEnemy.hp <= 0) {
+        if (chosenEnemy.hp <= 0) {
             $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
-            alert("You've defeated " + chosenEnemy.name + "! Select another character to continue fighting.")
+            alert("You've defeated " + chosenEnemy.name + "! Select your next opponent!")
             isEnemyChosen = false
             enemiesLeft--
             $("#enemyImg").empty()
@@ -111,9 +107,18 @@ $(document).ready(function () {
             $("#enemyAttack").empty()
             $("#enemyCtrAttack").empty()
             $(document).scrollTop(0)
+           
         }
 
-        else if (enemiesLeft = 0) {
+
+        if (chosenHero.hp <= 0) {
+            alert("You've been defeated! Game Over!")
+            // resetGame()
+            enemiesLeft = 5
+            location.reload()
+        }
+
+       if (enemiesLeft = 0) {
             alert("You won! Congratulations champion!")
         }
 
@@ -123,6 +128,7 @@ $(document).ready(function () {
 
     })
 
+    //Character array
     var charArr = [
 
         {
@@ -161,7 +167,7 @@ $(document).ready(function () {
 
         {
             name: "Magneto",
-            hp: 120,
+            hp: 100,
             // attack: function () {
             //     return Math.floor(Math.random() * 15) + 1
             // },
@@ -173,25 +179,25 @@ $(document).ready(function () {
 
         {
             name: "Night Crawler",
-            hp: 105,
+            hp: 130,
             // attack: function () {
             //     return Math.floor(Math.random() * 15) + 1
             // },
 
             attackPower: 15,
-            counterAttack: 30,
+            counterAttack: 15,
             image: "./assets/images/nightcrawler.jpeg",
         },
 
         {
             name: "Spider Man",
-            hp: 150,
+            hp: 140,
             // attack: function () {
             //     return Math.floor(Math.random() * 15) + 1
             // },
 
             attackPower: 15,
-            counterAttack: 30,
+            counterAttack: 20,
             image: "./assets/images/spiderman.jpg",
         }
 
