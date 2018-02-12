@@ -104,12 +104,10 @@ $(document).ready(function () {
             location.reload()
         }
 
-
-        else if (enemiesLeft =0) {
-            alert("You won! Congratulations champion!")
+        else if (enemiesLeft = 0) {
+            alert("Congratulations, you're the new champion!")
             isEnemyChosen = false
-            enemiesLeft--
-            $("#enemyImg").animate({ height: "500px" });
+            // $("#enemyImg").animate({ height: "500px" });
             $("#enemyImg").empty()
             $("#enemyName").empty()
             $("#enemyHp").empty()
@@ -139,7 +137,7 @@ $(document).ready(function () {
 
 
         else if (chosenHero.hp < 1) {
-            $("#heroImg").fadeOut("slow")
+            // $("#heroImg").fadeOut("slow")
             alert("You've been defeated! Game Over!")
             // resetGame()
             enemiesLeft = 5
