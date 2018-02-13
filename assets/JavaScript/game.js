@@ -13,14 +13,13 @@ $(document).ready(function () {
     var isEnemyAlive
     var isHeroChosen
     var isEnemyChosen
+    var maxEnemies = 5
     var enemiesLeft = 5
-
-
+    console.log("There are now " + enemiesLeft + "  enemies left.")
+   
     // Gets Link for Theme Song
     var audioElement = document.createElement("audio");
     audioElement.setAttribute("src", "./assets/javascript/magneto.mp3");
-
-
 
 
     //Initializes the game
@@ -29,13 +28,12 @@ $(document).ready(function () {
         isHeroChosen = false
         isEnemyChosen = false
 
-
         //Generate list of characters    
         for (var i = 0; i < charArr.length; i++) {
             var num = Math.floor(12 / charArr.length)
             // var charThing = $("<div class='myChar col-md-" + num + "'value='" + i + "'><img src='" + charArr[i].image + "' style='width:150px;height:200px;border:3px solid gray'/></div>")
-            var charThing = $("<div class='card-deck myChar col-md-" + num +
-                "' value='" + i + "'style='width:14rem;'><div class='card-img-top'><img src='" + charArr[i].image + "' style='width:200px;height:300px;'/></div><div class='card-body'><div class='card-text'>" + charArr[i].name + "<br>" + "Health: " + charArr[i].hp + "<br>" + "Attack: " + charArr[i].attackPower + "<br>" + "Counter Attack: " + charArr[i].counterAttack + "</div></div></div>")
+            var charThing = $("<div class='card-deck myChar col-sm-" + num +
+                "' value='" + i + "'style='width:14rem;'><div class='card-img-top'><img src='" + charArr[i].image + "' style='width:150px;height:200px;'/></div><div class='card-body'><div class='card-text'>" + charArr[i].name + "<br>" + "Health: " + charArr[i].hp + "<br>" + "Attack: " + charArr[i].attackPower + "<br>" + "Counter Attack: " + charArr[i].counterAttack + "</div></div></div>")
             $("#characters").append(charThing)
         }
     }
@@ -82,7 +80,7 @@ $(document).ready(function () {
             isEnemyChosen = true
             $(document).scrollTop(2000)
             audioElement.play()
-
+            
         }
 
     })
@@ -90,6 +88,7 @@ $(document).ready(function () {
 
     //Game-play logic
     $("#button").on("click", function () {
+        debugger
         if (chosenEnemy.hp > 0) {
             $("#heroHp").html("Health: " + (chosenHero.hp -= chosenEnemy.counterAttack))
             // console.log("The button was clicked, hero health is now: " + chosenHero.hp)
@@ -98,13 +97,13 @@ $(document).ready(function () {
         }
         $("#heroAttack").html("Attack Power: " + (chosenHero.attackPower += 20))
 
-        if (chosenHero.Hp < 1 && chosenEnemy.hp < 1) {
+        if (chosenHero.hp < 1 && chosenEnemy.hp < 1) {
             alert("It's a draw! Both players lost this battle.")
-            enemiesLeft = 5
+            enemiesLeft = maxEnemies
             location.reload()
         }
 
-        else if (enemiesLeft = 0) {
+        else if (enemiesLeft === 0) {
             alert("Congratulations, you're the new champion!")
             isEnemyChosen = false
             // $("#enemyImg").animate({ height: "500px" });
@@ -114,11 +113,14 @@ $(document).ready(function () {
             $("#enemyAttack").empty()
             $("#enemyCtrAttack").empty()
             $(document).scrollTop(0)
+            location.reload()
         }
 
 
         else if (chosenEnemy.hp < 1) {
+            debugger
             enemiesLeft--
+            console.log("There are now " +enemiesLeft+ "  enemies left.")
             $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
             // $("#enemyImg").delay( 800 ).fadeOut( "slow" )
             // $("#enemyName").delay( 800 ).fadeOut( "slow" )
@@ -140,7 +142,7 @@ $(document).ready(function () {
             // $("#heroImg").fadeOut("slow")
             alert("You've been defeated! Game Over!")
             // resetGame()
-            enemiesLeft = 5
+            enemiesLeft = maxEnemies
             location.reload()
         }
 
