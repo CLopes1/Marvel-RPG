@@ -38,20 +38,6 @@ $(document).ready(function () {
         }
     }
 
-    // function resetGame() {
-    //     $("#characters").empty()
-    //     $("#enemyImg").empty()
-    //     $("#enemyName").empty()
-    //     $("#enemyHealth").empty()
-    //     $("#heroImg").empty()
-    //     $("#heroName").empty()
-    //     $("#heroHealth").empty()
-    //     chosenEnemy.hp = 100
-    //     $(".enemyStrength").html("Strength: " + 100)
-    //     chosenHero.hp = 100
-    //     // $("#heroStrength").html("Strength: " + 100)
-    //     initGame()
-    // }
 
     //selects and grays out the first choice, assigns it as the hero. 
     $(document).on("click", ".myChar", function () {
@@ -59,7 +45,8 @@ $(document).ready(function () {
         if (isHeroChosen === false) {
             chosenHero = charArr[$(this).attr("value")]
             console.log(chosenHero)
-            $(this).addClass("fader")
+            $(this).empty()
+            $(this).click(false)
             $("#heroImg").append("<img src='" + chosenHero.image + "'/>")
             $("#heroName").append(chosenHero.name)
             $("#heroHp").append("Health: " + chosenHero.hp)
@@ -71,7 +58,8 @@ $(document).ready(function () {
         else if (isEnemyChosen === false && chosenHero.name != charArr[$(this).attr("value")].name) {
             chosenEnemy = charArr[$(this).attr("value")]
             console.log(chosenEnemy)
-            $(this).addClass("fader")
+            $(this).empty()
+            $(this).click(false)
             $("#enemyImg").append("<img src='" + chosenEnemy.image + "'/>")
             $("#enemyName").append(chosenEnemy.name)
             $("#enemyHp").append("Health: " + chosenEnemy.hp)
