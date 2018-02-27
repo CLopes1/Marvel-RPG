@@ -71,7 +71,6 @@ $(document).ready(function () {
 
     //Game-play logic - this is what fires when you click the attack button
     $("#button").on("click", function () {
-        debugger
         if (chosenEnemy.hp > 0) {
             $("#heroHp").html("Health: " + (chosenHero.hp -= chosenEnemy.counterAttack))
             $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
@@ -103,7 +102,6 @@ $(document).ready(function () {
 
         //When hero defeats an enemy, remove enemy from battlestage and scroll to top. 
         else if (chosenEnemy.hp < 1) {
-            debugger
             enemiesLeft--
             // console.log("There are now " + enemiesLeft + "  enemies left.")
             $("#enemyHp").html("Health: " + (chosenEnemy.hp -= chosenHero.attackPower))
